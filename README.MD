@@ -42,6 +42,7 @@ Deenify aims to become a unified hub for **Islamic knowledge and utilities** thr
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/deenify-api.git
-cd deenify-api
+git clone https://github.com/deenify/api.git
+cd  api
+npm i
 ```
