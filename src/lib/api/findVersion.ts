@@ -1,7 +1,7 @@
 import { quranLanguageVersions } from "./consts";
 import validateLowercase from "./validateLowercase";
 
-function findVersion(language: string, versionParam?: string) {
+function findQuranicLangVersion(language: string, versionParam?: string) {
   if (!versionParam) return undefined;
 
   validateLowercase(versionParam, "Version");
@@ -16,4 +16,4 @@ function findVersion(language: string, versionParam?: string) {
     (v) => v.toLowerCase() === versionParam
   );
 }
-export default findVersion;
+export default findQuranicLangVersion;

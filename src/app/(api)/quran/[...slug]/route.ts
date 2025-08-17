@@ -4,11 +4,11 @@ import { getQuranDb } from "@/lib/mongo/connect/connectQuran";
 import { methodNotFound } from "@/lib/api/methodNotFound";
 import errorResponse from "@/lib/api/errorResponse";
 import validateLowercase from "@/lib/api/validateLowercase";
-import findLanguage from "@/lib/api/findLanguage";
-import findVersion from "@/lib/api/findVersion";
 import buildQuery from "@/lib/api/buildQuery";
 import validateNumber from "@/lib/api/validateNumber";
 import { buildQuranCollectionName } from "@/lib/api/buildCollectionName";
+import findQuranicLangVersion from "@/lib/api/findVersion";
+import findQuranicLanguage from "@/lib/api/findLanguage";
 
 interface RouteParams {
   params: { slug: string[] };
@@ -26,14 +26,14 @@ export async function GET(req: Request, { params }: RouteParams) {
     const languageParam = slug[0];
     validateLowercase(languageParam, "Language");
 
-    const actualLanguage = findLanguage(languageParam);
+    const actualLanguage = findQuranicLanguage(languageParam);
     let actualVersion: string | undefined;
     let chapterParam: string | undefined;
     let verseParam: string | undefined;
 
     if (slug[1] && isNaN(Number(slug[1]))) {
       // version provided, slug[2] is chapter
-      actualVersion = findVersion(actualLanguage, slug[1]);
+      actualVersion = findQuranicLangVersion(actualLanguage, slug[1]);
       chapterParam = slug[2];
       verseParam = slug[3];
       maximumSlugLength = 4;
