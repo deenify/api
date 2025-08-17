@@ -26,7 +26,6 @@ export async function GET(req: Request, { params }: RouteParams) {
     const languageParam = slug[0];
     validateLowercase(languageParam, "Language");
 
-    // -------------- Lnguage, Version, Chapter, Verse --------------
     const actualLanguage = findLanguage(languageParam);
     let actualVersion: string | undefined;
     let chapterParam: string | undefined;
@@ -48,9 +47,8 @@ export async function GET(req: Request, { params }: RouteParams) {
     validateNumber(chapterParam, "Chapter");
     validateNumber(verseParam, "Verse");
 
-    // ---------------- DB Query ----------------
     const collectionName = buildCollectionName(actualLanguage, actualVersion);
-    const query = buildQuery(chapterParam); // fetch by chapter
+    const query = buildQuery(chapterParam);
 
     const db = await getQuranDb();
     const collection = db.collection(collectionName);
@@ -60,7 +58,6 @@ export async function GET(req: Request, { params }: RouteParams) {
 
     if (!data.length) return errorResponse("No data found", 404);
 
-    // ---------------- Verse handling ----------------
     if (verseParam) {
       const verseIndex = parseInt(verseParam, 10) - 1;
       if (verseIndex < 0 || verseIndex >= data[0].verses.length) {
