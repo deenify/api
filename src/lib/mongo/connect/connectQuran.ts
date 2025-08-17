@@ -1,4 +1,4 @@
-// src/lib/mongo/quran.ts
+// src/lib/mongo/connect/connectQuran.ts
 import { MongoClient } from "mongodb";
 
 let clientPromise: Promise<MongoClient> | null = null;
