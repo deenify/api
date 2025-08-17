@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 import { methodNotFound } from "@/lib/api/methodNotFound";
-import { getHadithDb } from "@/lib/mongo/connect/connectHadithBookwise";
+import { getHadithBookwiseDb } from "@/lib/mongo/connect/connectHadithBookwise";
 
 export async function GET() {
   try {
-    const db = await getHadithDb();
+    const db = await getHadithBookwiseDb();
     const collection = db.collection("metadata");
     const data = await collection
       .find({}, { projection: { _id: 0 } })

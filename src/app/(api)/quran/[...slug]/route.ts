@@ -6,9 +6,9 @@ import errorResponse from "@/lib/api/errorResponse";
 import validateLowercase from "@/lib/api/validateLowercase";
 import findLanguage from "@/lib/api/findLanguage";
 import findVersion from "@/lib/api/findVersion";
-import buildCollectionName from "@/lib/api/buildCollectionName";
 import buildQuery from "@/lib/api/buildQuery";
 import validateNumber from "@/lib/api/validateNumber";
+import { buildQuranCollectionName } from "@/lib/api/buildCollectionName";
 
 interface RouteParams {
   params: { slug: string[] };
@@ -47,7 +47,10 @@ export async function GET(req: Request, { params }: RouteParams) {
     validateNumber(chapterParam, "Chapter");
     validateNumber(verseParam, "Verse");
 
-    const collectionName = buildCollectionName(actualLanguage, actualVersion);
+    const collectionName = buildQuranCollectionName(
+      actualLanguage,
+      actualVersion
+    );
     const query = buildQuery(chapterParam);
 
     const db = await getQuranDb();

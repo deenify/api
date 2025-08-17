@@ -1,5 +1,6 @@
 // lib/api/consts.ts
 
+// Quran --
 export const quranLanguages = [
   "Achinese",
   "Afar",
@@ -198,4 +199,12 @@ export const quranLanguageVersions: Record<string, string[]> = {
   Yau: ["la"],
   Yoruba: ["la"],
   Zulu: [],
+};
+
+// Hadith --
+export const hadithLanguages = ["english", "arabic"];
+
+export const hadithBooks = {
+  ABM_BOOKS: new Set(["abudawud", "bukhari", "muslim"]),
+  ITN_BOOKS: new Set(["ibnmajah", "tirmidhi", "nasai"]),
 };
