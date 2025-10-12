@@ -1,9 +1,10 @@
 // src/lib/mongo/importQuranData.js
-// Run: node src/lib/mongo/importQuranData.js
+// Run: node src/lib/mongo/import-helpers/importQuran.js
+
 import fs from "fs";
 import path from "path";
 import { MongoClient } from "mongodb";
-import { serverEnv } from "../../env";
+import { serverEnv } from "../../../env";
 
 const uri = serverEnv.MONGODB_QURAN_URI;
 if (!uri) {

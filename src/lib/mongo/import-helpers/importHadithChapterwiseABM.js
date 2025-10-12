@@ -1,10 +1,10 @@
 // src/lib/mongo/importHadithChapterwiseABM.js
-// Run: node src/lib/mongo/importHadithChapterwiseABM.js
+// Run: node src/lib/mongo/import-helpers/importHadithChapterwiseABM.js
 
 import fs from "fs";
 import path from "path";
 import { MongoClient } from "mongodb";
-import { serverEnv } from "../../env";
+import { serverEnv } from "../../../env";
 
 const uri = serverEnv.MONGODB_HADITH_CHAPTERWISE_ABM_URI;
 if (!uri) {
