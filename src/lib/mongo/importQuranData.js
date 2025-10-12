@@ -1,14 +1,14 @@
 // src/lib/mongo/importQuranData.js
-// node src/lib/mongo/importQuranData.js
+// Run: node src/lib/mongo/importQuranData.js
 import fs from "fs";
 import path from "path";
 import { MongoClient } from "mongodb";
-import dotenv from "dotenv";
+import { serverEnv } from "../../env";
 
-dotenv.config({ path: ".env" });
-
-const uri = process.env.MONGODB_QURAN_URI;
-if (!uri) throw new Error("❌ Please set MONGODB_URI in .env.local");
+const uri = serverEnv.MONGODB_QURAN_URI;
+if (!uri) {
+  throw new Error("❌ Please set MONGODB_URI in .env.local");
+}
 
 const DB_NAME = "quran"; // Cluster0 ke andar ye DB create hoga
 const ROOT_DIR = path.join(process.cwd(), "src", "lib", "mongo", "db", "quran");

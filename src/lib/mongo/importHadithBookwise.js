@@ -1,14 +1,15 @@
 // src/lib/mongo/importHadithBookwise.js
-// node src/lib/mongo/importHadithBookwise.js
+// Run: node src/lib/mongo/importHadithBookwise.js
+
 import fs from "fs";
 import path from "path";
 import { MongoClient } from "mongodb";
-import dotenv from "dotenv";
+import { serverEnv } from "../../env";
 
-dotenv.config({ path: ".env" });
-
-const uri = process.env.MONGODB_HADITH_BOOKWISE_URI;
-if (!uri) throw new Error("❌ Please set MONGODB_HADITH_BOOKWISE_URI in .env");
+const uri = serverEnv.MONGODB_HADITH_BOOKWISE_URI;
+if (!uri) {
+  throw new Error("❌ Please set MONGODB_HADITH_BOOKWISE_URI in .env");
+}
 
 const DB_NAME = "hadith_bookwise";
 const ROOT_DIR = path.join(

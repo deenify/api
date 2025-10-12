@@ -1,9 +1,10 @@
 // src/lib/mongo/connect/connectQuran.ts
+import { serverEnv } from "@/env";
 import { MongoClient } from "mongodb";
 
 let clientPromise: Promise<MongoClient> | null = null;
 export async function getQuranDb() {
-  const uri = process.env.MONGODB_QURAN_URI;
+  const uri = serverEnv.MONGODB_QURAN_URI;
   if (!uri) {
     throw new Error("❌ MONGODB_QURAN_URI is missing in environment");
   }

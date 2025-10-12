@@ -1,9 +1,10 @@
 // src/lib/mongo/connect/connectHadithChapterwiseABM.ts
+import { serverEnv } from "@/env";
 import { MongoClient } from "mongodb";
 
 let clientPromise: Promise<MongoClient> | null = null;
 export async function getHadithChapterwiseABM_Db() {
-  const uri = process.env.MONGODB_HADITH_CHAPTERWISE_ABM_URI;
+  const uri = serverEnv.MONGODB_HADITH_CHAPTERWISE_ABM_URI;
   if (!uri) {
     throw new Error(
       "❌ MONGODB_HADITH_CHAPTERWISE_ABM_URI is missing in environment"

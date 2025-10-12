@@ -1,16 +1,15 @@
 // src/lib/mongo/importHadithChapterwiseITN.js
-// node src/lib/mongo/importHadithChapterwiseITN.js
+// Run: node src/lib/mongo/importHadithChapterwiseITN.js
 
 import fs from "fs";
 import path from "path";
 import { MongoClient } from "mongodb";
-import dotenv from "dotenv";
+import { serverEnv } from "../../env";
 
-dotenv.config({ path: ".env" });
-
-const uri = process.env.MONGODB_HADITH_CHAPTERWISE_ITN_URI;
-if (!uri)
+const uri = serverEnv.MONGODB_HADITH_CHAPTERWISE_ITN_URI;
+if (!uri) {
   throw new Error("❌ Please set MONGODB_HADITH_CHAPTERWISE_ITN_URI in .env");
+}
 
 const DB_NAME = "hadith_chapterwise_itn";
 const ROOT_DIR = path.join(
