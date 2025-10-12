@@ -1,4 +1,4 @@
-import { quranLanguages } from "./consts";
+import { quranLanguages } from "../../config/consts";
 
 function findQuranicLanguage(languageParam: string) {
   const allowedLower = quranLanguages.map((l) => l.toLowerCase());

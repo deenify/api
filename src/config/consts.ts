@@ -207,4 +207,12 @@ export const hadithLanguages = ["english", "arabic"];
 export const hadithBooks = {
   ABM_BOOKS: new Set(["abudawud", "bukhari", "muslim"]),
   ITN_BOOKS: new Set(["ibnmajah", "tirmidhi", "nasai"]),
+  ALL_BOOKS: new Set([
+    "abudawud",
+    "bukhari",
+    "muslim",
+    "ibnmajah",
+    "tirmidhi",
+    "nasai",
+  ]),
 };
