@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { methodNotFound } from "@/lib/api/methodNotFound";
 import { getHadithBookwiseDb } from "@/lib/mongo/connect/connectHadithBookwise";
+import errorResponse from "@/lib/api/errorResponse";
 
 export async function GET() {
   try {
@@ -11,13 +12,11 @@ export async function GET() {
       .toArray();
 
     if (!data.length) {
-      return NextResponse.json(
-        { error: "Metadata not found" },
-        { status: 404 }
-      );
+      return errorResponse("Metadata not found", 404);
     }
 
     return NextResponse.json(data, {
+      status: 200,
       headers: {
         "Cache-Control": "public, s-maxage=86400, stale-while-revalidate=3600",
         "X-Cache-Note": "24h CDN cache, 1h stale allowed",
@@ -25,10 +24,7 @@ export async function GET() {
     });
   } catch (error) {
     console.error("Error fetching Hadith metadata:", error);
-    return NextResponse.json(
-      { error: `Internal Server Error: ${error}` },
-      { status: 500 }
-    );
+    return errorResponse(`Internal Server Error: ${error}`, 500);
   }
 }
 
