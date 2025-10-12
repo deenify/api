@@ -7,7 +7,7 @@ import { getHadithChapterwiseITN_Db } from "@/lib/mongo/connect/connectHadithCha
 import { buildHadithCollectionName } from "@/lib/api/buildCollectionName";
 import { isInt } from "@/lib/utils/isIntigerUtils";
 import errorResponse from "@/lib/api/errorResponse";
-import { hadithBooks } from "@/lib/api/consts";
+import { hadithBooks } from "@/config/consts";
 const ABM_BOOKS = hadithBooks.ABM_BOOKS;
 const ITN_BOOKS = hadithBooks.ITN_BOOKS;
 

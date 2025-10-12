@@ -7,8 +7,8 @@ import validateLowercase from "@/lib/api/validateLowercase";
 import buildQuery from "@/lib/api/buildQuery";
 import validateNumber from "@/lib/api/validateNumber";
 import { buildQuranCollectionName } from "@/lib/api/buildCollectionName";
-import findQuranicLangVersion from "@/lib/api/findVersion";
-import findQuranicLanguage from "@/lib/api/findLanguage";
+import findQuranicLangVersion from "@/lib/api/findQuranicLangVersion";
+import findQuranicLanguage from "@/lib/api/findQuranicLanguage";
 
 interface RouteParams {
   params: { slug: string[] };
@@ -66,16 +66,19 @@ export async function GET(req: Request, { params }: RouteParams) {
       if (verseIndex < 0 || verseIndex >= data[0].verses.length) {
         return errorResponse("Verse not found", 404);
       }
-      return NextResponse.json([
-        {
-          chapter: data[0].chapter,
-          verse: parseInt(verseParam, 10),
-          text: data[0].verses[verseIndex],
-        },
-      ]);
+      return NextResponse.json(
+        [
+          {
+            chapter: data[0].chapter,
+            verse: parseInt(verseParam, 10),
+            text: data[0].verses[verseIndex],
+          },
+        ],
+        { status: 200 }
+      );
     }
 
-    return NextResponse.json(data);
+    return NextResponse.json(data, { status: 200 });
   } catch (err: any) {
     if (err?.status) return errorResponse(err.message, err.status);
     console.error("Error fetching Quran data:", err);

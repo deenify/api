@@ -1,4 +1,4 @@
-import { quranLanguageVersions } from "./consts";
+import { quranLanguageVersions } from "../../config/consts";
 import validateLowercase from "./validateLowercase";
 
 function findQuranicLangVersion(language: string, versionParam?: string) {
