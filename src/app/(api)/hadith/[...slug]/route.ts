@@ -35,7 +35,7 @@ export async function GET(req: Request, { params }: RouteParams) {
         .collection(buildHadithCollectionName(book))
         .findOne({}, { projection: { _id: 0 } });
       if (!meta) return errorResponse("Book metadata not found", 404);
-      return NextResponse.json(meta);
+      return NextResponse.json(meta, { status: 200 });
     }
 
     if (hadithQuery && !chapter) {
@@ -74,12 +74,15 @@ export async function GET(req: Request, { params }: RouteParams) {
       );
       if (!found) return errorResponse("Hadith not found in chapter", 404);
 
-      return NextResponse.json({
-        ...found,
-        book: meta.book_name_english,
-        chapter: chapterInfo.chapter_title_english,
-        chapterNum,
-      });
+      return NextResponse.json(
+        {
+          ...found,
+          book: meta.book_name_english,
+          chapter: chapterInfo.chapter_title_english,
+          chapterNum,
+        },
+        { status: 200 }
+      );
     }
 
     if (!chapter) {
@@ -87,8 +90,8 @@ export async function GET(req: Request, { params }: RouteParams) {
       const doc = await db
         .collection(buildHadithCollectionName(book, lang))
         .findOne({}, { projection: { _id: 0 } });
-      if (!doc) return errorResponse("Book not found in this language", 404);
-      return NextResponse.json(doc);
+      if (!doc) return errorResponse("Book not found with this language", 404);
+      return NextResponse.json(doc, { status: 200 });
     }
 
     if (!isInt(chapter)) return errorResponse("Chapter must be integer", 400);
@@ -109,14 +112,17 @@ export async function GET(req: Request, { params }: RouteParams) {
       );
       if (!found) return errorResponse("Hadith not found in chapter", 404);
 
-      return NextResponse.json({
-        ...found,
-        book,
-        chapter: chapterNum,
-      });
+      return NextResponse.json(
+        {
+          ...found,
+          book,
+          chapter: chapterNum,
+        },
+        { status: 200 }
+      );
     }
 
-    return NextResponse.json(chapterDoc);
+    return NextResponse.json(chapterDoc, { status: 200 });
   } catch (err: any) {
     console.error("Hadith route error:", err);
     return errorResponse("Internal Server Error", 500);
