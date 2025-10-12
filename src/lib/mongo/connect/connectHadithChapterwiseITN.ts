@@ -1,9 +1,10 @@
 // src/lib/mongo/connect/connectHadithChapterwiseITN.ts
+import { serverEnv } from "@/env";
 import { MongoClient } from "mongodb";
 
 let clientPromise: Promise<MongoClient> | null = null;
 export async function getHadithChapterwiseITN_Db() {
-  const uri = process.env.MONGODB_HADITH_CHAPTERWISE_ITN_URI;
+  const uri = serverEnv.MONGODB_HADITH_CHAPTERWISE_ITN_URI;
   if (!uri) {
     throw new Error(
       "❌ MONGODB_HADITH_CHAPTERWISE_ITN_URI is missing in environment"
