@@ -1,3 +1,4 @@
+// app/(api)/dua/route.tsx
 import { NextResponse } from "next/server";
 import { methodNotFound } from "@/lib/api/methodNotFound";
 import { getSupplicationDB } from "@/lib/mongo/connect/connectSupplication";
@@ -22,9 +23,9 @@ export async function GET() {
         "X-Cache-Note": "24h CDN cache, 1h stale allowed",
       },
     });
-  } catch (error) {
-    console.error("Error fetching Quran metadata:", error);
-    return errorResponse(`Internal Server Error: ${error}`, 500);
+  } catch (err) {
+    console.error("Error fetching Supplication metadata:", err);
+    return errorResponse(`Internal Server Error: ${err}`, 500);
   }
 }
 
