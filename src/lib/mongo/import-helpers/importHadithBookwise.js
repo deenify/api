@@ -1,10 +1,10 @@
 // src/lib/mongo/importHadithBookwise.js
-// Run: node src/lib/mongo/importHadithBookwise.js
+// Run: node src/lib/mongo/import-helpers/importHadithBookwise.js
 
 import fs from "fs";
 import path from "path";
 import { MongoClient } from "mongodb";
-import { serverEnv } from "../../env";
+import { serverEnv } from "../../../env";
 
 const uri = serverEnv.MONGODB_HADITH_BOOKWISE_URI;
 if (!uri) {
